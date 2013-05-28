@@ -5,6 +5,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+#define NR_SUITS 4
+#define NR_CARD_VALUES 13
+
 typedef enum{
 	false,
 	true
@@ -35,30 +39,32 @@ typedef enum{
 
 }CardValue;
 struct _card;
-struct _table;
+
 
 typedef struct _card Card;
-typedef struct _table Table;
 
+
+
+
+
+
+//Card Ops
 Suit getSuit(Card * card);
 CardValue getCardValue(Card *card);
+Card _createCard(Suit theSuit,CardValue theValue);
 Card * createCard(Suit theSuit,CardValue theValue);
 char* getName(Card *c);
-
-
-
-
-int getNrPlayers(Table * table);
-int getAvailableSeats(Table *t);
-bool isFull(Table *t);
+bool printCard(Card *c,bool printNonValid);
+void fillArrayWithCard(Card* array,Card c,int size);
 bool isValidCard(Card *c);
-int getTurn(Table *t);
-int getRound(Table *t);
-void updateTurn(Table *t);
-Card *getUsedCard(Table * table,int index);
-Card *getRoundCards(Table *t,int round);
-Card getTableCard(Table *table,int index);
-Card getDeckCard(Table *table,int index);
+bool readCardFromFifo(int fifoFD,Card *destination);
+
+
+
+
+
+
+
 
 //TODO player maybe to be implemented with functions to get hand cards etc
 #endif
